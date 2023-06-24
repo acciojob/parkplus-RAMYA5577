@@ -9,16 +9,16 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "payment_completed")
-    private Boolean paymentCompleted;
+    private Boolean isPaymentCompleted;
     @Column(name = "payment_mode")
     @Enumerated(EnumType.STRING)
      PaymentMode paymentMode;
     @OneToOne(mappedBy = "payment",cascade = CascadeType.ALL)
      Reservation reservation;
 
-    public Payment(int id, Boolean paymentCompleted, PaymentMode paymentMode, Reservation reservation) {
+    public Payment(int id, Boolean isPaymentCompleted, PaymentMode paymentMode, Reservation reservation) {
         this.id = id;
-        this.paymentCompleted = paymentCompleted;
+        this.isPaymentCompleted = isPaymentCompleted;
         this.paymentMode = paymentMode;
         this.reservation = reservation;
     }
@@ -34,12 +34,12 @@ public class Payment {
         this.id = id;
     }
 
-    public Boolean getPaymentCompleted() {
-        return paymentCompleted;
+    public Boolean getIsPaymentCompleted() {
+        return isPaymentCompleted;
     }
 
-    public void setPaymentCompleted(Boolean paymentCompleted) {
-        this.paymentCompleted = paymentCompleted;
+    public void setIsPaymentCompleted(Boolean paymentCompleted) {
+        this.isPaymentCompleted = paymentCompleted;
     }
 
     public PaymentMode getPaymentMode() {
