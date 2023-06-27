@@ -45,26 +45,25 @@ public class ReservationServiceImpl implements ReservationService {
         int optimalPrice = Integer.MAX_VALUE;
         for (Spot spot : spotList) {
             if (spot.getOccupied().equals(false)) {
-                if (spot.getSpotType().equals(SpotType.TWO_WHEELER))
+                if (spot.getSpotType().equals(SpotType.TWO_WHEELER)) {
                     if (numberOfWheels <= 2) {
                         if (optimalPrice > spot.getPricePerHour()) {
                             optimalPrice = spot.getPricePerHour();
                             optimalSpot = spot;
                         }
                     }
-               }
-            else if (spot.getSpotType().equals(SpotType.FOUR_WHEELER)) {
-                if (numberOfWheels <= 4) {
+                } else if (spot.getSpotType().equals(SpotType.FOUR_WHEELER)) {
+                    if (numberOfWheels <= 4) {
+                        if (optimalPrice > spot.getPricePerHour()) {
+                            optimalPrice = spot.getPricePerHour();
+                            optimalSpot = spot;
+                        }
+                    }
+                } else {
                     if (optimalPrice > spot.getPricePerHour()) {
                         optimalPrice = spot.getPricePerHour();
                         optimalSpot = spot;
                     }
-                }
-            }
-            else {
-                if (optimalPrice > spot.getPricePerHour()) {
-                    optimalPrice = spot.getPricePerHour();
-                    optimalSpot = spot;
                 }
             }
         }
