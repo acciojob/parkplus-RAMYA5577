@@ -15,14 +15,14 @@ public class Payment {
     @JoinColumn
     Reservation reservation;
 
+    public Payment() {
+    }
+
     public Payment(int id, Boolean paymentCompleted, PaymentMode paymentMode, Reservation reservation) {
         this.id = id;
         this.paymentCompleted = paymentCompleted;
         this.paymentMode = paymentMode;
         this.reservation = reservation;
-    }
-
-    public Payment() {
     }
 
     public int getId() {
@@ -33,7 +33,7 @@ public class Payment {
         this.id = id;
     }
 
-    public Boolean isPaymentCompleted() {
+    public Boolean getPaymentCompleted() {
         return paymentCompleted;
     }
 

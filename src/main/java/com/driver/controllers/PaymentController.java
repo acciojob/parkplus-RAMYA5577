@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentController {
 	
 	@Autowired
-    PaymentService paymentService;
+    PaymentServiceImpl paymentService;
 
     @PostMapping("/pay")
     public Payment pay(@RequestParam Integer reservationId, @RequestParam Integer amountSent, @RequestParam String mode) throws Exception{

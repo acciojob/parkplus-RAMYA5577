@@ -18,8 +18,8 @@ public class ReservationServiceImpl implements ReservationService {
     UserRepository userRepository3;
     @Autowired
     SpotRepository spotRepository3;
-//    @Autowired
-//    ReservationRepository reservationRepository3;
+    @Autowired
+    ReservationRepository reservationRepository3;
     @Autowired
     ParkingLotRepository parkingLotRepository3;
     @Override
