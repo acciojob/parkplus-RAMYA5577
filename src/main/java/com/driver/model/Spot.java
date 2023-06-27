@@ -9,18 +9,18 @@ public class Spot {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "spot_type")
+
     @Enumerated(EnumType.STRING)
     private SpotType spotType;
-    @Column(name = "price_per_hour")
+
     private int pricePerHour;
-    @Column(name = "occupied")
+
     private Boolean occupied;
     @ManyToOne
     @JoinColumn
-    private ParkingLot parkingLot;
+    ParkingLot parkingLot;
     @OneToMany(mappedBy = "spot", cascade = CascadeType.ALL)
-    private List<Reservation> reservationList=new ArrayList<>();
+    List<Reservation> reservationList=new ArrayList<>();
 
     public Spot(int id, SpotType spotType, int pricePerHour, Boolean occupied, ParkingLot parkingLot, List<Reservation> reservationList) {
         this.id = id;

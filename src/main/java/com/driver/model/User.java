@@ -9,14 +9,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "name")
+
     private String name;
-    @Column(name = "phone_number",unique = true,nullable = false)
     private String phoneNumber;
-    @Column(name = "password")
     private String password;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-    List<Reservation> reservationList=new ArrayList<>();
+    List<Reservation> reservationList;
 
     public User(int id, String name, String phoneNumber, String password, List<Reservation> reservationList) {
         this.id = id;

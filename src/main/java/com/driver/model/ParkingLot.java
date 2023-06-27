@@ -9,12 +9,11 @@ public class ParkingLot {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "name")
     private String name;
-    @Column(name = "address")
+
     private String address;
     @OneToMany(mappedBy = "parkingLot",cascade = CascadeType.ALL)
-    private List<Spot> spotList=new ArrayList<>();
+    List<Spot> spotList=new ArrayList<>();
 
     public ParkingLot(int id, String name, String address, List<Spot> spotList) {
         this.id = id;

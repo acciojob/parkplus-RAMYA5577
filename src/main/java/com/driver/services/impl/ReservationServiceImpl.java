@@ -18,8 +18,8 @@ public class ReservationServiceImpl implements ReservationService {
     UserRepository userRepository3;
     @Autowired
     SpotRepository spotRepository3;
-    @Autowired
-    ReservationRepository reservationRepository3;
+//    @Autowired
+//    ReservationRepository reservationRepository3;
     @Autowired
     ParkingLotRepository parkingLotRepository3;
     @Override
@@ -41,52 +41,52 @@ public class ReservationServiceImpl implements ReservationService {
         ParkingLot parkingLot = parkingLotRepository3.findById(parkingLotId).get();
 
         List<Spot> spotList = parkingLot.getSpotList();
-        Spot optionalSpot = null;
+        Spot optimalSpot = null;
         int optimalPrice = Integer.MAX_VALUE;
         for (Spot spot : spotList) {
-            if (spot.getOccupied() == false) {
+            if (spot.getOccupied().equals(false)) {
                 if (spot.getSpotType().equals(SpotType.TWO_WHEELER))
                     if (numberOfWheels <= 2) {
                         if (optimalPrice > spot.getPricePerHour()) {
                             optimalPrice = spot.getPricePerHour();
-                            optionalSpot = spot;
+                            optimalSpot = spot;
                         }
                     }
-            }
+               }
             else if (spot.getSpotType().equals(SpotType.FOUR_WHEELER)) {
                 if (numberOfWheels <= 4) {
                     if (optimalPrice > spot.getPricePerHour()) {
                         optimalPrice = spot.getPricePerHour();
-                        optionalSpot = spot;
+                        optimalSpot = spot;
                     }
                 }
             }
             else {
                 if (optimalPrice > spot.getPricePerHour()) {
                     optimalPrice = spot.getPricePerHour();
-                    optionalSpot = spot;
+                    optimalSpot = spot;
                 }
             }
         }
-        if (optionalSpot==null){
+        if (optimalSpot==null){
             throw new Exception("Cannot make reservation");
         }
-        optionalSpot.setOccupied(true);
+        optimalSpot.setOccupied(true);
 
         reservation.setNumberOfHours(timeInHours);
         reservation.setUser(user);
-        reservation.setSpot(optionalSpot);
+        reservation.setSpot(optimalSpot);
 
         List<Reservation> reservations=user.getReservationList();
-        List<Reservation> reservationList=optionalSpot.getReservationList();
+        List<Reservation> reservationList=optimalSpot.getReservationList();
 
         reservations.add(reservation);
         reservationList.add(reservation);
 
         user.setReservationList(reservationList);
-        optionalSpot.setReservationList(reservationList);
+        optimalSpot.setReservationList(reservationList);
         userRepository3.save(user);
-        spotRepository3.save(optionalSpot);
+        spotRepository3.save(optimalSpot);
         return reservation;
     }
 }

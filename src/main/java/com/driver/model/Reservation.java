@@ -7,17 +7,17 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "number_of_hours")
+
     private int numberOfHours;
     @ManyToOne
     @JoinColumn
-    private User user;
+    User user;
     @ManyToOne
     @JoinColumn
-    private Spot spot;
+    Spot spot;
     @OneToOne
     @JoinColumn
-    private Payment payment;
+    Payment payment;
 
     public Reservation(int id, int numberOfHours, User user, Spot spot, Payment payment) {
         this.id = id;

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/reservation")
 public class ReservationController {
     @Autowired
-    ReservationServiceImpl reservationService;
+    ReservationService reservationService;
     @PostMapping("/reserveSpot")
     public Reservation reserveSpot(@RequestParam Integer userId, @RequestParam Integer parkingLotId, @RequestParam Integer timeInHours, @RequestParam Integer numberOfWheels) throws Exception{
 

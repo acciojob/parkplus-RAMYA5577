@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 public class PaymentServiceImpl implements PaymentService {
     @Autowired
     ReservationRepository reservationRepository2;
-    @Autowired
-    PaymentRepository paymentRepository2;
+//    @Autowired
+//    PaymentRepository paymentRepository2;
 
     @Override
     public Payment pay(Integer reservationId, int amountSent, String mode) throws Exception {
@@ -31,7 +31,7 @@ public class PaymentServiceImpl implements PaymentService {
         Payment payment=new Payment();
         payment.setReservation(reservation);
         String updatedMode=mode.toUpperCase();
-        payment.setIsPaymentCompleted(false);
+        payment.setPaymentCompleted(false);
         if (updatedMode.equals("CASH")){
             payment.setPaymentMode(PaymentMode.CASH);
         }
@@ -48,7 +48,7 @@ public class PaymentServiceImpl implements PaymentService {
             throw new Exception("Insufficient Amount");
         }
         spot.setOccupied(false);
-        payment.setIsPaymentCompleted(true);
+        payment.setPaymentCompleted(true);
         payment.setReservation(reservation);
         reservation.setPayment(payment);
         reservationRepository2.save(reservation);
